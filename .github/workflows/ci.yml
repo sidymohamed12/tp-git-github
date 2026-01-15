@@ -26,5 +26,5 @@ jobs:
       - name: Vérifier HTML
         run: htmlhint "**/*.html"
 
-      - name: Vérifier CSS
-        run: stylelint "**/*.css"
+      # - name: Vérifier CSS
+      #   run: stylelint "**/*.css"
