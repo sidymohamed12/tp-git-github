@@ -1,0 +1,30 @@
+name: CI HTML/CSS
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Installer les linters
+        run: |
+          npm install -g htmlhint stylelint stylelint-config-standard
+
+      - name: Vérifier HTML
+        run: htmlhint "**/*.html"
+
+      - name: Vérifier CSS
+        run: stylelint "**/*.css"
