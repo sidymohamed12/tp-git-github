@@ -1,0 +1,27 @@
+name: CD - Continuous Deployment
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Déploiement STAGING
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          echo "Déploiement en environnement STAGING..."
+          echo "Application déployée sur https://staging.tp-git-github.com"
+
+      - name: Déploiement PRODUCTION
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Déploiement en PRODUCTION..."
+          echo "Application déployée sur https://tp-git-github.com"
